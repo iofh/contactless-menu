@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "220778980116",
+    "project_id": "contactless-menu-73797",
+    "storage_bucket": "contactless-menu-73797.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220778980116:android:16a12b686cdf0e942e5801",
+        "android_client_info": {
+          "package_name": "com.irvinggan.contactless_menu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "220778980116-i2je8kqfu8is46c7pgi2jud3od0tea4s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.irvinggan.contactless_menu",
+            "certificate_hash": "dfc6d9d47d7a3ac282d5f11f6b07df002a22d8a4"
+          }
+        },
+        {
+          "client_id": "220778980116-5jhvagtt9o124dap8r7sjkqet6k2pntu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRapWmZ5el2t65n1gfeLiTQx_rsDl73l8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220778980116-5jhvagtt9o124dap8r7sjkqet6k2pntu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

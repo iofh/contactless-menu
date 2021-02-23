@@ -11,14 +11,14 @@ enum NavIndexStatus {
   profile,
 }
 
-class MenuPage extends StatefulWidget {
-  const MenuPage({Key key}) : super(key: key);
+class RestaurantPage extends StatefulWidget {
+  const RestaurantPage({Key key}) : super(key: key);
 
   @override
-  _MenuPageState createState() => _MenuPageState();
+  _RestaurantPageState createState() => _RestaurantPageState();
 }
 
-class _MenuPageState extends State<MenuPage> {
+class _RestaurantPageState extends State<RestaurantPage> {
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -86,13 +86,13 @@ class _MenuPageState extends State<MenuPage> {
       _selectedIndex = index;
       switch (index) {
         case 0:
-          ExtendedNavigator.of(context).replace(Routes.menuPage);
+          ExtendedNavigator.of(context).replace(Routes.restaurantPage);
           break;
         case 1:
           ExtendedNavigator.of(context).replace(Routes.splashPage);
           break;
         case 2:
-          ExtendedNavigator.of(context).replace(Routes.menuPage);
+          ExtendedNavigator.of(context).replace(Routes.restaurantPage);
           break;
         default:
           ExtendedNavigator.of(context).replace(Routes.splashPage);

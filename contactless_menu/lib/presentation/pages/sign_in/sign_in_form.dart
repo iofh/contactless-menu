@@ -24,7 +24,7 @@ class SignInForm extends StatelessWidget {
               ).show(context);
             },
             (_) {
-              ExtendedNavigator.of(context).replace(Routes.menuPage);
+              ExtendedNavigator.of(context).replace(Routes.restaurantPage);
               context.read().add(const AuthEvent.authCheckRequested());
             },
           ),

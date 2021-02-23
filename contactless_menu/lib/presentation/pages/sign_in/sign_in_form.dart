@@ -25,7 +25,9 @@ class SignInForm extends StatelessWidget {
             },
             (_) {
               ExtendedNavigator.of(context).replace(Routes.restaurantPage);
-              context.read().add(const AuthEvent.authCheckRequested());
+              context
+                  .read<AuthBloc>()
+                  .add(const AuthEvent.authCheckRequested());
             },
           ),
         );
@@ -60,7 +62,8 @@ class SignInForm extends StatelessWidget {
               ),
               RaisedButton(
                 onPressed: () {
-                  BlocProvider.of<SignInFormBloc>(context, listen: false)
+                  context
+                      .read<SignInFormBloc>()
                       .add(const SignInFormEvent.signInWithGooglePressed());
                 },
                 color: Colors.purple,

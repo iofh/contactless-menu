@@ -5,4 +5,6 @@ import 'package:kt_dart/collection.dart';
 
 abstract class IRestaurantRepository {
   Stream<Either<RestaurantFailure, KtList<Restaurant>>> loadRestaurant();
+  Stream<Either<RestaurantFailure, KtList<Restaurant>>> loadRestaurantDemo();
+  // Future<Either<RestaurantFailure, Unit>> create(Restaurant restaurant);
 }

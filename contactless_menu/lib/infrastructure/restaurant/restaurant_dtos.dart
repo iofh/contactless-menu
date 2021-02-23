@@ -18,7 +18,6 @@ abstract class RestaurantDto implements _$RestaurantDto {
     @required String restaurantName,
     @required String restaurantDescription,
     @required List<MenuItemDto> menuList,
-    @required @ServerTimestampConverter() FieldValue serverTimeStamp,
   }) = _RestaurantDto;
 
   factory RestaurantDto.fromDomain(Restaurant restaurant) {
@@ -29,20 +28,20 @@ abstract class RestaurantDto implements _$RestaurantDto {
       menuList: restaurant.menuList
           .getOrCrash()
           .map(
-            (todoItem) => MenuItemDto.fromDomain(todoItem),
+            (menuItem) => MenuItemDto.fromDomain(menuItem),
           )
           .asList(),
-      serverTimeStamp: FieldValue.serverTimestamp(),
     );
   }
 
   Restaurant toDomain() {
     return Restaurant(
-      id: UniqueId.fromUniqueString(id),
+      id: UniqueId.fromUniqueString('testing'),
       restaurantName: RestaurantName(restaurantName),
       restaurantDescription: RestaurantDescription(restaurantDescription),
       menuList:
           MenuList(menuList.map((dto) => dto.toDomain()).toImmutableList()),
+      // menuList: MenuList(emptyList()),
     );
   }
 

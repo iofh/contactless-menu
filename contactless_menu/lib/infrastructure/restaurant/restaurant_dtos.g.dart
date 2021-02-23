@@ -14,8 +14,6 @@ _$_RestaurantDto _$_$_RestaurantDtoFromJson(Map<String, dynamic> json) {
         ?.map((e) =>
             e == null ? null : MenuItemDto.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-    serverTimeStamp:
-        const ServerTimestampConverter().fromJson(json['serverTimeStamp']),
   );
 }
 
@@ -24,8 +22,6 @@ Map<String, dynamic> _$_$_RestaurantDtoToJson(_$_RestaurantDto instance) =>
       'restaurantName': instance.restaurantName,
       'restaurantDescription': instance.restaurantDescription,
       'menuList': instance.menuList,
-      'serverTimeStamp':
-          const ServerTimestampConverter().toJson(instance.serverTimeStamp),
     };
 
 _$_MenuItemDto _$_$_MenuItemDtoFromJson(Map<String, dynamic> json) {

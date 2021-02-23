@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 
 import '../pages/sign_in/sign_in_page.dart';
 import '../pages/splash/splash_page.dart';
-import '../restaurant/menu_page.dart';
+import '../restaurant/restaurant_page.dart';
 
 class Routes {
   static const String splashPage = '/';

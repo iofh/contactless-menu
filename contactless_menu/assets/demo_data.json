@@ -1,0 +1,27 @@
+
+    {
+        "id":"restaurantid1",
+        "restaurantName":"restaurantName1",
+        "restaurantDescription":"restaurantDescription",
+        "menuList":[
+        {
+
+            "id":"menuid1",
+            "menuTitle":"menuTitle1",
+            "menuDescription":"descriptions example",
+            "menuPrice":20
+        },
+        {
+            "id":"menuid2",
+            "menuTitle":"menuTitle2",
+            "menuDescription":"descriptions example",
+            "menuPrice":30
+        },
+        {
+            "id":"menuid2",
+            "menuTitle":"menuTitle2",
+            "menuDescription":"descriptions example",
+            "menuPrice":40
+        }]
+    }
+

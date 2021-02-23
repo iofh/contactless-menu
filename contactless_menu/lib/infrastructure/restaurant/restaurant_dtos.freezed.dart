@@ -21,14 +21,12 @@ class _$RestaurantDtoTearOff {
       {@JsonKey(ignore: true) String id,
       @required String restaurantName,
       @required String restaurantDescription,
-      @required List<MenuItemDto> menuList,
-      @required @ServerTimestampConverter() FieldValue serverTimeStamp}) {
+      @required List<MenuItemDto> menuList}) {
     return _RestaurantDto(
       id: id,
       restaurantName: restaurantName,
       restaurantDescription: restaurantDescription,
       menuList: menuList,
-      serverTimeStamp: serverTimeStamp,
     );
   }
 
@@ -49,8 +47,6 @@ mixin _$RestaurantDto {
   String get restaurantName;
   String get restaurantDescription;
   List<MenuItemDto> get menuList;
-  @ServerTimestampConverter()
-  FieldValue get serverTimeStamp;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
@@ -66,8 +62,7 @@ abstract class $RestaurantDtoCopyWith<$Res> {
       {@JsonKey(ignore: true) String id,
       String restaurantName,
       String restaurantDescription,
-      List<MenuItemDto> menuList,
-      @ServerTimestampConverter() FieldValue serverTimeStamp});
+      List<MenuItemDto> menuList});
 }
 
 /// @nodoc
@@ -85,7 +80,6 @@ class _$RestaurantDtoCopyWithImpl<$Res>
     Object restaurantName = freezed,
     Object restaurantDescription = freezed,
     Object menuList = freezed,
-    Object serverTimeStamp = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -97,9 +91,6 @@ class _$RestaurantDtoCopyWithImpl<$Res>
           : restaurantDescription as String,
       menuList:
           menuList == freezed ? _value.menuList : menuList as List<MenuItemDto>,
-      serverTimeStamp: serverTimeStamp == freezed
-          ? _value.serverTimeStamp
-          : serverTimeStamp as FieldValue,
     ));
   }
 }
@@ -115,8 +106,7 @@ abstract class _$RestaurantDtoCopyWith<$Res>
       {@JsonKey(ignore: true) String id,
       String restaurantName,
       String restaurantDescription,
-      List<MenuItemDto> menuList,
-      @ServerTimestampConverter() FieldValue serverTimeStamp});
+      List<MenuItemDto> menuList});
 }
 
 /// @nodoc
@@ -136,7 +126,6 @@ class __$RestaurantDtoCopyWithImpl<$Res>
     Object restaurantName = freezed,
     Object restaurantDescription = freezed,
     Object menuList = freezed,
-    Object serverTimeStamp = freezed,
   }) {
     return _then(_RestaurantDto(
       id: id == freezed ? _value.id : id as String,
@@ -148,9 +137,6 @@ class __$RestaurantDtoCopyWithImpl<$Res>
           : restaurantDescription as String,
       menuList:
           menuList == freezed ? _value.menuList : menuList as List<MenuItemDto>,
-      serverTimeStamp: serverTimeStamp == freezed
-          ? _value.serverTimeStamp
-          : serverTimeStamp as FieldValue,
     ));
   }
 }
@@ -163,12 +149,10 @@ class _$_RestaurantDto extends _RestaurantDto {
       {@JsonKey(ignore: true) this.id,
       @required this.restaurantName,
       @required this.restaurantDescription,
-      @required this.menuList,
-      @required @ServerTimestampConverter() this.serverTimeStamp})
+      @required this.menuList})
       : assert(restaurantName != null),
         assert(restaurantDescription != null),
         assert(menuList != null),
-        assert(serverTimeStamp != null),
         super._();
 
   factory _$_RestaurantDto.fromJson(Map<String, dynamic> json) =>
@@ -183,13 +167,10 @@ class _$_RestaurantDto extends _RestaurantDto {
   final String restaurantDescription;
   @override
   final List<MenuItemDto> menuList;
-  @override
-  @ServerTimestampConverter()
-  final FieldValue serverTimeStamp;
 
   @override
   String toString() {
-    return 'RestaurantDto(id: $id, restaurantName: $restaurantName, restaurantDescription: $restaurantDescription, menuList: $menuList, serverTimeStamp: $serverTimeStamp)';
+    return 'RestaurantDto(id: $id, restaurantName: $restaurantName, restaurantDescription: $restaurantDescription, menuList: $menuList)';
   }
 
   @override
@@ -206,10 +187,7 @@ class _$_RestaurantDto extends _RestaurantDto {
                     other.restaurantDescription, restaurantDescription)) &&
             (identical(other.menuList, menuList) ||
                 const DeepCollectionEquality()
-                    .equals(other.menuList, menuList)) &&
-            (identical(other.serverTimeStamp, serverTimeStamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.serverTimeStamp, serverTimeStamp)));
+                    .equals(other.menuList, menuList)));
   }
 
   @override
@@ -218,8 +196,7 @@ class _$_RestaurantDto extends _RestaurantDto {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(restaurantName) ^
       const DeepCollectionEquality().hash(restaurantDescription) ^
-      const DeepCollectionEquality().hash(menuList) ^
-      const DeepCollectionEquality().hash(serverTimeStamp);
+      const DeepCollectionEquality().hash(menuList);
 
   @JsonKey(ignore: true)
   @override
@@ -235,12 +212,10 @@ class _$_RestaurantDto extends _RestaurantDto {
 abstract class _RestaurantDto extends RestaurantDto {
   const _RestaurantDto._() : super._();
   const factory _RestaurantDto(
-          {@JsonKey(ignore: true) String id,
-          @required String restaurantName,
-          @required String restaurantDescription,
-          @required List<MenuItemDto> menuList,
-          @required @ServerTimestampConverter() FieldValue serverTimeStamp}) =
-      _$_RestaurantDto;
+      {@JsonKey(ignore: true) String id,
+      @required String restaurantName,
+      @required String restaurantDescription,
+      @required List<MenuItemDto> menuList}) = _$_RestaurantDto;
 
   factory _RestaurantDto.fromJson(Map<String, dynamic> json) =
       _$_RestaurantDto.fromJson;
@@ -254,9 +229,6 @@ abstract class _RestaurantDto extends RestaurantDto {
   String get restaurantDescription;
   @override
   List<MenuItemDto> get menuList;
-  @override
-  @ServerTimestampConverter()
-  FieldValue get serverTimeStamp;
   @override
   @JsonKey(ignore: true)
   _$RestaurantDtoCopyWith<_RestaurantDto> get copyWith;

@@ -1,4 +1,6 @@
 part of 'restaurant_bloc.dart';
 
-@immutable
-abstract class RestaurantEvent {}
+@freezed
+abstract class RestaurantEvent with _$RestaurantEvent {
+  const factory RestaurantEvent.displayAllStarted() = _DisplayAllStarted;
+}

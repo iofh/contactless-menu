@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contactless_menu/domain/restaurant/i_restaurant_repository.dart';
 import 'package:contactless_menu/domain/restaurant/restaurant.dart';
@@ -7,6 +9,8 @@ import 'package:injectable/injectable.dart';
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:contactless_menu/infrastructure/core/firebase_helper_method.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 @LazySingleton(as: IRestaurantRepository)
 class RestaurantRepository implements IRestaurantRepository {
@@ -17,24 +21,53 @@ class RestaurantRepository implements IRestaurantRepository {
   @override
   Stream<Either<RestaurantFailure, KtList<Restaurant>>>
       loadRestaurant() async* {
-    final restaurantDoc = _firestore.collection('restaurant');
-    yield* restaurantDoc
-        .orderBy('serverTimeStamp', descending: true)
+    final userDoc = await _firestore.userDocument();
+    yield* userDoc.restaurantCollection
+        //.orderBy('serverTimeStamp', descending: true)
         .snapshots()
-        .map(
-          (snapshot) => right<RestaurantFailure, KtList<Restaurant>>(
-            snapshot.docs
-                .map((doc) => RestaurantDto.fromFirestore(doc).toDomain())
-                .toImmutableList(),
-          ),
-        )
-        //rxdart method
+        .map((snapshot) => right<RestaurantFailure, KtList<Restaurant>>(snapshot
+            .docs
+            .map((doc) => RestaurantDto.fromFirestore(doc).toDomain())
+            .toImmutableList()))
         .onErrorReturnWith((e) {
       if (e is FirebaseException && e.message.contains('PERMISSION_DENIED')) {
         return left(const RestaurantFailure.insufficientPermission());
       } else {
+        print(e);
         return left(const RestaurantFailure.unexpected());
       }
     });
   }
+
+  @override
+  Stream<Either<RestaurantFailure, KtList<Restaurant>>>
+      loadRestaurantDemo() async* {
+    var restaurantJson = await rootBundle.loadString('assets/demo_data.json');
+    var data = json.decode(restaurantJson);
+    RestaurantDto restaurantdto = RestaurantDto.fromJson(data);
+    print(restaurantdto);
+    Restaurant restaurant = restaurantdto.toDomain();
+    List<Restaurant> restaurantlist = List<Restaurant>();
+    restaurantlist.add(restaurant);
+    yield right(restaurantlist.toImmutableList());
+    // yield left(const RestaurantFailure.unexpected());
+  }
+
+  // @override
+  // Future<Either<RestaurantFailure, Unit>> create(Restaurant restaurant) {
+  //   try {
+  //     final userDoc = await _firestore.userDocument();
+  //     final noteDto = NoteDto.fromDomain(note);
+
+  //     await userDoc.noteCollection.doc(noteDto.id).set(noteDto.toJson());
+
+  //     return right(unit);
+  //   } on FirebaseException catch (e) {
+  //     if (e.message.contains('PERMISSION_DENIED')) {
+  //       return left(const NoteFailure.insufficientPermission());
+  //     } else {
+  //       return left(const NoteFailure.unexpected());
+  //     }
+  //   }
+  // }
 }

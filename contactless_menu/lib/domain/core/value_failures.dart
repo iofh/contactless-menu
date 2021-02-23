@@ -4,10 +4,17 @@ part 'value_failures.freezed.dart';
 
 @freezed
 abstract class ValueFailure<T> with _$ValueFailure<T> {
-  const factory ValueFailure.invalidEmail({
+  const factory ValueFailure.empty({
     @required T failedValue,
-  }) = InvalidEmail<T>;
-  const factory ValueFailure.shortPassword({
+  }) = Empty<T>;
+  const factory ValueFailure.exceedingLength({
     @required T failedValue,
-  }) = ShortPassword<T>;
+    @required int max,
+  }) = ExceedingLength<T>;
+  const factory ValueFailure.isNotDouble({
+    @required T failedValue,
+  }) = IsNotDouble<T>;
+  const factory ValueFailure.isNegative({
+    @required T failedValue,
+  }) = IsNegative<T>;
 }

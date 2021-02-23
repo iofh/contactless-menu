@@ -20,13 +20,10 @@ class SignInForm extends StatelessWidget {
                   cancelledByUser: (_) => 'Cancelled',
                   serverError: (_) => 'Server error',
                   emailAlreadyInUse: (_) => 'Email already in use',
-                  invalidEmailAndPasswordCombination: (_) =>
-                      'Invalid email and password combination',
                 ),
               ).show(context);
             },
             (_) {
-              //TODO
               ExtendedNavigator.of(context).replace(Routes.menuPage);
               context.read().add(const AuthEvent.authCheckRequested());
             },
@@ -34,16 +31,39 @@ class SignInForm extends StatelessWidget {
         );
       },
       builder: (context, state) {
-        return Form(
-          child: ListView(
-            padding: const EdgeInsets.all(8),
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Stack(
+                children: <Widget>[
+                  // Stroked text as border.
+                  Text(
+                    'Contactless Menu',
+                    style: TextStyle(
+                      fontSize: 40,
+                      foreground: Paint()
+                        ..style = PaintingStyle.stroke
+                        ..strokeWidth = 6
+                        ..color = Colors.black,
+                    ),
+                  ),
+                  // Solid text as fill.
+                  Text(
+                    'Contactless Menu',
+                    style: TextStyle(
+                      fontSize: 40,
+                      color: Colors.grey[300],
+                    ),
+                  ),
+                ],
+              ),
               RaisedButton(
                 onPressed: () {
                   BlocProvider.of<SignInFormBloc>(context, listen: false)
                       .add(const SignInFormEvent.signInWithGooglePressed());
                 },
-                color: Colors.lightBlue,
+                color: Colors.purple,
                 child: const Text(
                   'SIGN IN WITH GOOGLE',
                   style: TextStyle(

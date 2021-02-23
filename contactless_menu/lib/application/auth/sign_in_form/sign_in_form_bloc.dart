@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:contactless_menu/domain/auth/auth_failure.dart';
-import 'package:contactless_menu/domain/auth/auth_value_objects.dart';
 import 'package:contactless_menu/domain/auth/i_auth_facade.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';

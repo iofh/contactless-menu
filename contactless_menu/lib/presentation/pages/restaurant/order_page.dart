@@ -1,4 +1,5 @@
 import 'package:contactless_menu/application/restaurant/order/bloc/order_bloc.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -57,7 +58,7 @@ class OrderPage extends StatelessWidget {
         height: 100,
         child: FloatingActionButton(
           shape: RoundedRectangleBorder(),
-          onPressed: () {},
+          onPressed: () => _showUnimplementedFlushbar(context),
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Text(
@@ -67,4 +68,11 @@ class OrderPage extends StatelessWidget {
       ),
     );
   }
+}
+
+void _showUnimplementedFlushbar(BuildContext context) {
+  Flushbar(
+    message: 'Coming Soon, Unimplemented',
+    duration: Duration(seconds: 3),
+  )..show(context);
 }

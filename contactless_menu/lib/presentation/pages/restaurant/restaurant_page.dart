@@ -61,14 +61,17 @@ class _RestaurantPageState extends State<RestaurantPage> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
-      switch (index) {
-        case 0:
-          ExtendedNavigator.of(context).replace(Routes.restaurantPage);
-          break;
-        case 1:
-          context.read<AuthBloc>().add(const AuthEvent.signedOut());
-          break;
+      if (index != _selectedIndex) {
+        _selectedIndex = index;
+
+        switch (index) {
+          case 0:
+            ExtendedNavigator.of(context).replace(Routes.restaurantPage);
+            break;
+          case 1:
+            context.read<AuthBloc>().add(const AuthEvent.signedOut());
+            break;
+        }
       }
     });
   }

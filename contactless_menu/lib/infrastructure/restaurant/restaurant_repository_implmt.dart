@@ -44,14 +44,19 @@ class RestaurantRepository implements IRestaurantRepository {
   Stream<Either<RestaurantFailure, KtList<Restaurant>>>
       loadRestaurantDemo() async* {
     try {
+      // var restaurantJson = await rootBundle.loadString('assets/demo_data.json');
+      // var data = json.decode(restaurantJson);
+      // RestaurantDto restaurantdto = RestaurantDto.fromJson(data[0]);
+      // print(restaurantdto);
+      // Restaurant restaurant = restaurantdto.toDomain();
+      // List<Restaurant> restaurantlist = List<Restaurant>();
+      // restaurantlist.add(restaurant);
+      // yield right(restaurantlist.toImmutableList());
       var restaurantJson = await rootBundle.loadString('assets/demo_data.json');
-      var data = json.decode(restaurantJson);
-      RestaurantDto restaurantdto = RestaurantDto.fromJson(data);
-      print(restaurantdto);
-      Restaurant restaurant = restaurantdto.toDomain();
-      List<Restaurant> restaurantlist = List<Restaurant>();
-      restaurantlist.add(restaurant);
-      yield right(restaurantlist.toImmutableList());
+      var data = json.decode(restaurantJson) as List;
+      List<Restaurant> restaurantDto =
+          data.map((res) => RestaurantDto.fromJson(res).toDomain()).toList();
+      yield right(restaurantDto.toImmutableList());
     } catch (e) {
       yield left(const RestaurantFailure.unexpected());
     }

@@ -80,7 +80,7 @@ class MenuTile extends StatelessWidget {
       leading: InkWell(
         onTap: () {
           context.read<OrderBloc>().add(AddOrderEvent(menuModel));
-          showSimpleFlushbar(context, menuModel.menuTitle);
+          _showSimpleFlushbar(context, menuModel.menuTitle);
         },
         child: Container(
             child: Column(
@@ -94,12 +94,9 @@ class MenuTile extends StatelessWidget {
   }
 }
 
-void showSimpleFlushbar(BuildContext context, String menu) {
+void _showSimpleFlushbar(BuildContext context, String menu) {
   Flushbar(
-    // There is also a messageText property for when you want to
-    // use a Text widget and not just a simple String
     message: 'Added $menu',
-    // Even the button can be styled to your heart's content
     mainButton: FlatButton(
       child: Text(
         'View Orders',
@@ -110,6 +107,5 @@ void showSimpleFlushbar(BuildContext context, String menu) {
       },
     ),
     duration: Duration(seconds: 3),
-    // Show it with a cascading operator
   )..show(context);
 }

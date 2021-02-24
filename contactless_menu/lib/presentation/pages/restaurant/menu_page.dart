@@ -6,7 +6,6 @@ import 'package:contactless_menu/domain/restaurant/primitive_menu_model.dart';
 import 'package:contactless_menu/domain/restaurant/restaurant.dart';
 import 'package:contactless_menu/presentation/routes/router.gr.dart';
 import 'package:flushbar/flushbar.dart';
-import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kt_dart/kt.dart';
@@ -44,23 +43,36 @@ class MenuPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text(restaurant.restaurantDescription.getOrCrash()),
+            Padding(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height * 0.2),
+              child: Text(restaurant.restaurantDescription.getOrCrash()),
+            ),
             if (restaurant.menuList.length > 0) ...[
-              Padding(
-                  padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.2),
-                  child: Wrap(
-                    spacing: 8,
-                    children: <Widget>[
-                      ...restaurant.menuList
-                          .getOrCrash()
-                          .map((menu) => MenuTile(
-                                menuItem: menu,
-                              ))
-                          .iter
-                    ],
-                  )),
-            ],
+              Wrap(
+                spacing: 8,
+                children: <Widget>[
+                  const ListTile(
+                    title: Text(
+                      "Menu",
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
+                  ...restaurant.menuList
+                      .getOrCrash()
+                      .map((menu) => MenuTile(
+                            menuItem: menu,
+                          ))
+                      .iter
+                ],
+              ),
+            ] else
+              const ListTile(
+                title: Text(
+                  "No Menu Yet",
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
           ],
         ),
       ),

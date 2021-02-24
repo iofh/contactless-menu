@@ -23,6 +23,7 @@ class RestaurantRepository implements IRestaurantRepository {
       loadRestaurant() async* {
     final userDoc = await _firestore.userDocument();
     yield* userDoc.restaurantCollection
+        //do not need timestamp at the moment
         //.orderBy('serverTimeStamp', descending: true)
         .snapshots()
         .map((snapshot) => right<RestaurantFailure, KtList<Restaurant>>(snapshot
@@ -42,14 +43,18 @@ class RestaurantRepository implements IRestaurantRepository {
   @override
   Stream<Either<RestaurantFailure, KtList<Restaurant>>>
       loadRestaurantDemo() async* {
-    var restaurantJson = await rootBundle.loadString('assets/demo_data.json');
-    var data = json.decode(restaurantJson);
-    RestaurantDto restaurantdto = RestaurantDto.fromJson(data);
-    print(restaurantdto);
-    Restaurant restaurant = restaurantdto.toDomain();
-    List<Restaurant> restaurantlist = List<Restaurant>();
-    restaurantlist.add(restaurant);
-    yield right(restaurantlist.toImmutableList());
+    try {
+      var restaurantJson = await rootBundle.loadString('assets/demo_data.json');
+      var data = json.decode(restaurantJson);
+      RestaurantDto restaurantdto = RestaurantDto.fromJson(data);
+      print(restaurantdto);
+      Restaurant restaurant = restaurantdto.toDomain();
+      List<Restaurant> restaurantlist = List<Restaurant>();
+      restaurantlist.add(restaurant);
+      yield right(restaurantlist.toImmutableList());
+    } catch (e) {
+      left(const RestaurantFailure.unexpected());
+    }
     // yield left(const RestaurantFailure.unexpected());
   }
 

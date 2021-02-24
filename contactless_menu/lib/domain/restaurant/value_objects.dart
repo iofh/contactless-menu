@@ -88,8 +88,6 @@ class MenuList<T> extends ValueObject<KtList<T>> {
   @override
   final Either<ValueFailure<KtList<T>>, KtList<T>> value;
 
-  static const maxLength = 3;
-
   factory MenuList(KtList<T> input) {
     assert(input != null);
     return MenuList._(
@@ -101,9 +99,5 @@ class MenuList<T> extends ValueObject<KtList<T>> {
 
   int get length {
     return value.getOrElse(() => emptyList()).size;
-  }
-
-  bool get isFull {
-    return length == maxLength;
   }
 }

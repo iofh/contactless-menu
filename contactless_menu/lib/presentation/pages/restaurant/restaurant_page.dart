@@ -2,9 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:contactless_menu/application/auth/auth_bloc.dart';
 import 'package:contactless_menu/application/restaurant/restaurant_bloc.dart';
 import 'package:contactless_menu/injectable.dart';
-import 'package:contactless_menu/presentation/core/sliver_header_delegate.dart';
-import 'package:contactless_menu/presentation/restaurant/widgets/restaurant_sliver_wid.dart';
-import 'package:contactless_menu/presentation/restaurant/widgets/testingfirebaseconnection.dart';
+import 'package:contactless_menu/presentation/pages/restaurant/widgets/restaurant_sliver_wid.dart';
 import 'package:contactless_menu/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +23,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
         BlocProvider<RestaurantBloc>(
           create: (context) => getIt<RestaurantBloc>()
             ..add(const RestaurantEvent.displayAllStarted()),
-        )
+        ),
       ],
       child: MultiBlocListener(
         listeners: [
@@ -40,17 +38,12 @@ class _RestaurantPageState extends State<RestaurantPage> {
           ),
         ],
         child: Scaffold(
-          // body: TestingConnection(),
           body: RestaurantSliverWid(),
           bottomNavigationBar: BottomNavigationBar(
             items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.food_bank),
                 label: 'Restaurant',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Search',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.exit_to_app),
@@ -74,9 +67,6 @@ class _RestaurantPageState extends State<RestaurantPage> {
           ExtendedNavigator.of(context).replace(Routes.restaurantPage);
           break;
         case 1:
-          ExtendedNavigator.of(context).replace(Routes.splashPage);
-          break;
-        case 2:
           context.read<AuthBloc>().add(const AuthEvent.signedOut());
           break;
       }

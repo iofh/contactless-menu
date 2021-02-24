@@ -1,5 +1,6 @@
 import 'package:contactless_menu/application/restaurant/restaurant_bloc.dart';
 import 'package:contactless_menu/presentation/core/sliver_header_delegate.dart';
+import 'package:contactless_menu/presentation/pages/restaurant/widgets/restaurant_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,14 +39,11 @@ class RestaurantSliverWid extends StatelessWidget {
                             final res = state.restaurant[index];
                             if (res.failureOption.isSome()) {
                               return Container(
+                                child: Text('Failure encountered'),
                                 color: Colors.red,
                               );
                             } else {
-                              return Container(
-                                child: Text(
-                                  res.restaurantDescription.toString(),
-                                ),
-                              );
+                              return RestaurantTile(res: res);
                             }
                           },
                           itemCount: state.restaurant.size,

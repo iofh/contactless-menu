@@ -24,7 +24,7 @@ class MenuDescription extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  static const maxLength = 1000;
+  static const maxLength = 5000;
 
   factory MenuDescription(String input) {
     assert(input != null);
@@ -72,7 +72,7 @@ class RestaurantDescription extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  static const maxLength = 100;
+  static const maxLength = 1000;
 
   factory RestaurantDescription(String input) {
     assert(input != null);

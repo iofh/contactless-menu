@@ -9,26 +9,61 @@ class OrderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Order'),
+        title: const Text('Your Order'),
+        actions: [
+          InkWell(
+            onTap: () {
+              if (context
+                  .read<OrderBloc>()
+                  .state
+                  .ordersModel
+                  .menuModel
+                  .isNotEmpty) {
+                context.read<OrderBloc>().state.ordersModel.menuModel.clear();
+                context.read<OrderBloc>().add(ClearOrderEvent());
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text('Clear Order'),
+            ),
+          )
+        ],
       ),
       body: BlocBuilder<OrderBloc, OrderState>(
         builder: (_, state) {
           if (state is OrderLoadingState) {
             return const CircularProgressIndicator();
           }
-          if (state is OrderLoadedState) {
+          if (state is OrderLoadedState || state is InitialOrderState) {
             return ListView.builder(
               itemCount: state.ordersModel.menuModel.length,
               itemBuilder: (context, index) => ListTile(
-                leading: const Icon(Icons.done),
+                leading: Text(
+                  "\$ ${state.ordersModel.menuModel[index].menuPrice.toString()}",
+                ),
                 title: Text(
                   state.ordersModel.menuModel[index].menuTitle,
                 ),
               ),
             );
           }
+
           return const Text('Something went wrong!');
         },
+      ),
+      floatingActionButton: Container(
+        width: 100,
+        height: 100,
+        child: FloatingActionButton(
+          shape: RoundedRectangleBorder(),
+          onPressed: () {},
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text(
+                'Order Now \$${context.watch<OrderBloc>().state.ordersModel.totalPrice}'),
+          ),
+        ),
       ),
     );
   }

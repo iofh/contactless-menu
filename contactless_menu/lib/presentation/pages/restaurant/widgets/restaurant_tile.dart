@@ -10,7 +10,10 @@ class RestaurantTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        title: Text(res.restaurantName.getOrCrash()),
+        title: Text(
+          res.restaurantName.getOrCrash(),
+          style: TextStyle(fontSize: 30),
+        ),
         subtitle: Text(res.restaurantDescription.getOrCrash()),
         trailing: Icon(Icons.navigate_next),
         onTap: () =>

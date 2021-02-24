@@ -19,6 +19,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       yield* _mapOrderStartedToState();
     } else if (event is AddOrderEvent) {
       yield* _mapMenuItemToState(event, state);
+    } else if (event is ClearOrderEvent) {
+      yield* _mapClearItemToState(event, state);
     }
   }
 }
@@ -43,6 +45,20 @@ Stream<OrderState> _mapMenuItemToState(
         ordersModel: OrderListModel(
             menuModel: List.from(state.ordersModel.menuModel)..add(event.menu)),
       );
+    } on Exception {
+      yield OrderErrorState();
+    }
+  }
+}
+
+Stream<OrderState> _mapClearItemToState(
+  ClearOrderEvent event,
+  OrderState state,
+) async* {
+  if (state is OrderLoadedState) {
+    try {
+      yield InitialOrderState();
+      yield const OrderLoadedState();
     } on Exception {
       yield OrderErrorState();
     }

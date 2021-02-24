@@ -53,26 +53,7 @@ class RestaurantRepository implements IRestaurantRepository {
       restaurantlist.add(restaurant);
       yield right(restaurantlist.toImmutableList());
     } catch (e) {
-      left(const RestaurantFailure.unexpected());
+      yield left(const RestaurantFailure.unexpected());
     }
-    // yield left(const RestaurantFailure.unexpected());
   }
-
-  // @override
-  // Future<Either<RestaurantFailure, Unit>> create(Restaurant restaurant) {
-  //   try {
-  //     final userDoc = await _firestore.userDocument();
-  //     final noteDto = NoteDto.fromDomain(note);
-
-  //     await userDoc.noteCollection.doc(noteDto.id).set(noteDto.toJson());
-
-  //     return right(unit);
-  //   } on FirebaseException catch (e) {
-  //     if (e.message.contains('PERMISSION_DENIED')) {
-  //       return left(const NoteFailure.insufficientPermission());
-  //     } else {
-  //       return left(const NoteFailure.unexpected());
-  //     }
-  //   }
-  // }
 }

@@ -17,7 +17,11 @@ class RestaurantSliverWid extends StatelessWidget {
             minHeight: MediaQuery.of(context).size.height * 0.1,
             maxHeight: MediaQuery.of(context).size.height * 0.2,
             child: Container(
-              child: Center(child: Text('Contacless Menu')),
+              child: Center(
+                  child: Text(
+                'Contacless Menu',
+                style: TextStyle(fontSize: 30),
+              )),
               color: Theme.of(context).appBarTheme.color,
             ),
           ),

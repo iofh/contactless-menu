@@ -18,3 +18,8 @@ class AddOrderEvent extends OrderEvent {
   @override
   List<Object> get props => [menu];
 }
+
+class ClearOrderEvent extends OrderEvent {
+  @override
+  List<Object> get props => [];
+}

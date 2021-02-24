@@ -41,7 +41,6 @@ abstract class RestaurantDto implements _$RestaurantDto {
       restaurantDescription: RestaurantDescription(restaurantDescription),
       menuList:
           MenuList(menuList.map((dto) => dto.toDomain()).toImmutableList()),
-      // menuList: MenuList(emptyList()),
     );
   }
 

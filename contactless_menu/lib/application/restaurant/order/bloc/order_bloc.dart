@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:contactless_menu/domain/restaurant/primitive_menu_model.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 part 'order_event.dart';
 part 'order_state.dart';
 
+@injectable
 class OrderBloc extends Bloc<OrderEvent, OrderState> {
   OrderBloc() : super(OrderLoadedState());
 

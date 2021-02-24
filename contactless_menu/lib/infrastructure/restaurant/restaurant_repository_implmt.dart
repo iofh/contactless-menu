@@ -40,21 +40,15 @@ class RestaurantRepository implements IRestaurantRepository {
     });
   }
 
+// repository method for getting data from json instead of firebase firestore
   @override
   Stream<Either<RestaurantFailure, KtList<Restaurant>>>
       loadRestaurantDemo() async* {
     try {
-      // var restaurantJson = await rootBundle.loadString('assets/demo_data.json');
-      // var data = json.decode(restaurantJson);
-      // RestaurantDto restaurantdto = RestaurantDto.fromJson(data[0]);
-      // print(restaurantdto);
-      // Restaurant restaurant = restaurantdto.toDomain();
-      // List<Restaurant> restaurantlist = List<Restaurant>();
-      // restaurantlist.add(restaurant);
-      // yield right(restaurantlist.toImmutableList());
-      var restaurantJson = await rootBundle.loadString('assets/demo_data.json');
-      var data = json.decode(restaurantJson) as List;
-      List<Restaurant> restaurantDto =
+      final restaurantJson =
+          await rootBundle.loadString('assets/demo_data.json');
+      final data = json.decode(restaurantJson) as List;
+      final List<Restaurant> restaurantDto =
           data.map((res) => RestaurantDto.fromJson(res).toDomain()).toList();
       yield right(restaurantDto.toImmutableList());
     } catch (e) {

@@ -19,6 +19,10 @@ class RestaurantBloc extends Bloc<RestaurantEvent, RestaurantState> {
 
   RestaurantBloc(this._restaurantRepository) : super(RestaurantState.initial());
 
+  // method for the firebase repository. I still have yet to figure out why i have write access to firebase
+  // and when retrieving from the firebase firestore it always return null. even using the tutorial code from
+  // firebase https://firebase.flutter.dev/docs/firestore/usage/ it still returns null.
+
   // @override
   // Stream<RestaurantState> mapEventToState(
   //   RestaurantEvent event,

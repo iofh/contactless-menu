@@ -84,7 +84,7 @@ class MenuTile extends StatelessWidget {
         },
         child: Container(
             child: Column(
-          children: [Icon(Icons.add), Text('Select')],
+          children: [const Icon(Icons.add), const Text('Select')],
         )),
       ),
       title: Text(menuItem.menuTitle.getOrCrash()),

@@ -29,26 +29,6 @@ class RestaurantSliverWid extends StatelessWidget {
           ),
         ];
       },
-      // slivers: <Widget>[
-      //   SliverPersistentHeader(
-      //     pinned: false,
-      //     delegate: SliverHeaderDelegate(
-      //       minHeight: MediaQuery.of(context).size.height * 0.1,
-      //       maxHeight: MediaQuery.of(context).size.height * 0.2,
-      //       child: Container(
-      //         child: Center(
-      //             child: Text(
-      //           'Contacless Menu',
-      //           style: TextStyle(fontSize: 30),
-      //         )),
-      //         color: Theme.of(context).appBarTheme.color,
-      //       ),
-      //     ),
-      //   ),
-      // SliverList(
-      //     delegate: SliverChildBuilderDelegate((context, index) {
-      //   return Placeholder();
-      // }, childCount: 10)),
       body: BlocBuilder<RestaurantBloc, RestaurantState>(
         builder: (context, state) {
           return state.map(
@@ -62,7 +42,7 @@ class RestaurantSliverWid extends StatelessWidget {
                     final res = state.restaurant[index];
                     if (res.failureOption.isSome()) {
                       return Container(
-                        child: Text('Failure encountered'),
+                        child: const Text('Failure encountered'),
                         color: Colors.red,
                       );
                     } else {
@@ -81,46 +61,6 @@ class RestaurantSliverWid extends StatelessWidget {
               });
         },
       ),
-      // SliverFixedExtentList(
-      //   itemExtent: MediaQuery.of(context).size.height * 0.28,
-      //   delegate: SliverChildListDelegate(
-      //     [
-      //       BlocBuilder<RestaurantBloc, RestaurantState>(
-      //         builder: (context, state) {
-      //           return state.map(
-      //               initial: (_) => Container(),
-      //               loadInProgress: (_) => Center(
-      //                     child: CircularProgressIndicator(),
-      //                   ),
-      //               loadSuccess: (state) {
-      //                 return ListView.builder(
-      //                   itemBuilder: (context, index) {
-      //                     final res = state.restaurant[index];
-      //                     if (res.failureOption.isSome()) {
-      //                       return Container(
-      //                         child: Text('Failure encountered'),
-      //                         color: Colors.red,
-      //                       );
-      //                     } else {
-      //                       return RestaurantTile(res: res);
-      //                     }
-      //                   },
-      //                   itemCount: state.restaurant.size,
-      //                 );
-      //               },
-      //               loadFailure: (_) {
-      //                 return Container(
-      //                   child: Text(
-      //                     _.toString(),
-      //                   ),
-      //                 );
-      //               });
-      //         },
-      //       ),
-      //     ],
-      //   ),
-      // ),
-      // ],
     );
   }
 }

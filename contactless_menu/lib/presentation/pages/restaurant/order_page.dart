@@ -24,7 +24,7 @@ class OrderPage extends StatelessWidget {
                 context.read<OrderBloc>().add(ClearOrderEvent());
               }
             },
-            child: Padding(
+            child: const Padding(
               padding: const EdgeInsets.all(15.0),
               child: Text('Clear Order'),
             ),

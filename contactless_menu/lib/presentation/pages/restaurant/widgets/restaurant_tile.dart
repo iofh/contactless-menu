@@ -15,7 +15,7 @@ class RestaurantTile extends StatelessWidget {
           style: TextStyle(fontSize: 30),
         ),
         subtitle: Text(res.restaurantDescription.getOrCrash()),
-        trailing: Icon(Icons.navigate_next),
+        trailing: const Icon(Icons.navigate_next),
         onTap: () =>
             ExtendedNavigator.of(context).pushMenuPage(restaurant: res));
   }
